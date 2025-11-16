@@ -7,14 +7,7 @@
 				"name": "CPY_Raw_Filtered",
 				"description": "copy file from source to target",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "LK_CSV_File",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -74,7 +67,14 @@
 				"name": "LK_CSV_File",
 				"description": "check if file exist in target",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "CPY_Raw_Filtered",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
