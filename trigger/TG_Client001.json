@@ -1,0 +1,24 @@
+{
+	"name": "TG_Client001",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_Client001",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/clients-rawdata/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/227c007d-a272-4a69-ae7d-059d72f92b25/resourceGroups/rg_16Nov2025_Practice/providers/Microsoft.Storage/storageAccounts/adls16nov2025source",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
