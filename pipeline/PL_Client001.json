@@ -4,9 +4,9 @@
 		"description": "Take csv's to cloud, if its present in target then delete and add latest one.",
 		"activities": [
 			{
-				"name": "LK_File",
-				"description": "to check if file is exist or not",
-				"type": "Lookup",
+				"name": "CPY_Raw_Filtered",
+				"description": "copy file from source to target",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -29,11 +29,39 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"dataset": {
-						"referenceName": "DS_file_exist",
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_rawdata",
 						"type": "DatasetReference"
 					}
-				}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_filtereddata",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
