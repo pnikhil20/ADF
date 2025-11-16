@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf16nov2025"
+		},
+		"LS_File_Exist_accountKey": {
+			"value": ""
+		},
+		"LS_filtereddata_accountKey": {
+			"value": ""
+		},
+		"LS_rawfiles_accountKey": {
+			"value": ""
+		},
+		"LS_File_Exist_properties_typeProperties_url": {
+			"value": "https://adls16nov2025source.dfs.core.windows.net/"
+		},
+		"LS_filtereddata_properties_typeProperties_url": {
+			"value": "https://adls16nov2025target.dfs.core.windows.net/"
+		},
+		"LS_rawfiles_properties_typeProperties_url": {
+			"value": "https://adls16nov2025source.dfs.core.windows.net/"
+		},
+		"TG_Client001_properties_typeProperties_scope": {
+			"value": "/subscriptions/227c007d-a272-4a69-ae7d-059d72f92b25/resourceGroups/rg_16Nov2025_Practice/providers/Microsoft.Storage/storageAccounts/adls16nov2025source"
+		}
+	}
+}

@@ -1,0 +1,91 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf16nov2025"
+		},
+		"LS_File_Exist_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_File_Exist'"
+		},
+		"LS_filtereddata_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_filtereddata'"
+		},
+		"LS_rawfiles_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_rawfiles'"
+		},
+		"LS_File_Exist_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls16nov2025source.dfs.core.windows.net/"
+		},
+		"LS_filtereddata_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls16nov2025target.dfs.core.windows.net/"
+		},
+		"LS_rawfiles_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls16nov2025source.dfs.core.windows.net/"
+		},
+		"TG_Client001_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/227c007d-a272-4a69-ae7d-059d72f92b25/resourceGroups/rg_16Nov2025_Practice/providers/Microsoft.Storage/storageAccounts/adls16nov2025source"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf16nov2025_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_File_Exist_accountKey": {
+						"value": "[parameters('LS_File_Exist_accountKey')]"
+					},
+					"LS_filtereddata_accountKey": {
+						"value": "[parameters('LS_filtereddata_accountKey')]"
+					},
+					"LS_rawfiles_accountKey": {
+						"value": "[parameters('LS_rawfiles_accountKey')]"
+					},
+					"LS_File_Exist_properties_typeProperties_url": {
+						"value": "[parameters('LS_File_Exist_properties_typeProperties_url')]"
+					},
+					"LS_filtereddata_properties_typeProperties_url": {
+						"value": "[parameters('LS_filtereddata_properties_typeProperties_url')]"
+					},
+					"LS_rawfiles_properties_typeProperties_url": {
+						"value": "[parameters('LS_rawfiles_properties_typeProperties_url')]"
+					},
+					"TG_Client001_properties_typeProperties_scope": {
+						"value": "[parameters('TG_Client001_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
