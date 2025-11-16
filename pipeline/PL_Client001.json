@@ -7,7 +7,14 @@
 				"name": "CPY_Raw_Filtered",
 				"description": "copy file from source to target",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LK_CSV_File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
